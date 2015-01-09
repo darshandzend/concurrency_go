@@ -78,7 +78,8 @@ func (sm safeMap) Delete(key string) {
 
 func (sm safeMap) Find(key string) (value interface{}, found bool) {
 	reply := make(chan findResult)
-	sm <- commandAction{action: find, key: key, result: reply} result := (<-reply).(findResult)
+	sm <- commandAction{action: find, key: key, result: reply}
+	result := (<-reply).(findResult)
 	return result.value, result.found
 }
 
